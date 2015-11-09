@@ -1,0 +1,58 @@
+<div class="container">
+<h1 >Welcome to Task 5</h1>
+<h4>
+	<% if !current_user %>
+	<%= link_to 'Log-in', new_session_path %>
+	<% else %>
+	Hello, <%= current_user.username %>
+	<%= link_to 'log-Out', session_path(current_user.id), method: "DELETE" %>
+	<% end %>
+</h4>
+</div>
+<hr />
+<div class="container">
+<h3>Listing Articles</h3>
+<%= link_to 'Add Article', new_article_path, class: "btn btn-default" %>
+<br /><br />
+<%= form_tag  import_articles_path, multipart: true do %>
+<%= file_field_tag :file, :class => "btn btn-primary" %>
+<%= submit_tag "Import Article", :class => "btn btn-success"%>
+<% end %>
+</div>
+<br />
+<div class="container">
+<table class="table table-responsive table-condensed table-hover">
+<thead>
+	<tr class="info">
+		<th class="col-sm-1">Number</th>
+		<th class="col-sm-2">Article Title</th>
+		<th class="col-sm-2">Artitle Content</th>
+		<th class="col-sm-1">Status</th>
+		<th class="col-sm-1">Action</th>
+	</tr>
+</thead>
+<tbody>
+	<% @articles.each do |article| %>
+	<tr>
+		<td><%= article.id %></td>
+		<td><%= article.title %></td>
+		<td>
+			<%= article.content.truncate(45) %>
+		</td>
+		<td><strong><%= article.status %></strong></td>
+		<td>
+			<span><%= link_to 'view detail', article_path(article.id)%></span>
+			<span> | </span>
+			<span><%= link_to 'edit', edit_article_path(article.id)%></span>
+			<span> | </span>
+			<span><%= link_to 'delete', article_path(article.id), method: "DELETE", data: {confirm: 'Delete this article?'} %></span>
+			<span> | </span>
+			<span><%= link_to 'Export This Article', article_path(article.id, :format => "xlsx") %></span>
+		</td>
+	</tr>
+	<% end %>
+</tbody>
+</table>
+<%= paginate @articles %>
+<br />
+</div>

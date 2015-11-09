@@ -1,0 +1,41 @@
+<h1><%= @profile_name%> Profile</h1>
+
+<!-- Content  -->
+<div class="container clearfix">
+      <div class="row row-offcanvas row-offcanvas-left ">
+        <!--Bagian Kiri-->
+        <div class="col-xs-12 col-sm-3 side pull-left sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+          	<h1> <%= @profile_name %> </h1>
+          	<%= image_tag("profile2.JPG", alt: "Image Pgofile", width: "140px", height: "140px", class: "img-circle") %>
+          	
+          </div>
+        </div>
+
+        <!--Bagian Kanan-->
+        <div id="main-content" class="col-xs-12 col-sm-9 main pull-right">
+         <div class="panel-body">
+         	<table class="table table-hover table-striped display">
+         		<tbody>
+         			<tr>
+         				<th>Nama</th>
+         				<td><%= @profile_name %></td>
+         			</tr>
+         			<tr>
+         				<th>Tempat, Tanggal Lahir</th>
+         				<td></td>
+         			</tr>
+         			<tr>
+         				<th>Jenis Kelamin</th>
+         				<td><%= @jenkel %></td>
+         			</tr>
+         			<tr>
+         				<th>Alamat Domisili</th>
+         				<td><%= @alamat %></td>
+         			</tr>
+         		</tbody>
+         	</table>
+         </div>
+        </div>
+      </div>
+    </div>

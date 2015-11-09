@@ -1,0 +1,28 @@
+<%= image_tag @article.photo.url(:original) %>
+
+<h2><%= @article.title %></h2>
+<p><%= @article.content%></p>
+
+<h2>Comments</h2>
+<% @article.comments.each do |comment| %>
+<p>
+	<strong>User:</strong>
+	<%= comment.user.blank? ? "" : comment.user.username %>
+</p>
+<p>
+	<strong>Comment:</strong>
+	<%= comment.content %>
+</p>
+<% end %>
+
+<h2>Add a comment: </h2>
+<%= form_for([@article, @article.comments.build]) do |f| %>
+<p>
+	<%= f.label :comment %>
+	<%= f.text_area :content, cols: 20, rows: 5 %>
+</p>
+<p>
+	<%= f.submit :submit, value: "Comment" %>
+</p>
+<% end %>
+<p><%= link_to 'back to index', articles_path %></p>

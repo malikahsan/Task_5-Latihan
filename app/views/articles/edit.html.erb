@@ -1,0 +1,41 @@
+<%= form_for @article do |f| %>
+
+<% if @article.errors.any? %>
+	<strong><%= pluralize(@article.errors.count, 'error') %> found while saving images</strong>
+	<ul>
+		<% @article.errors.full_messages.each do |m|%>
+			<li><%= m %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<%=  f.label :title%>
+<%=  f.text_field :title%>
+
+<br />
+
+<%=  f.label :content%>
+<%=  f.text_area :content, cols: 20, rows: 10%>
+
+<br />
+
+<%=  f.label :status%>
+<%=  f.radio_button :status, "active"%>
+<%=  label :article_status, 'Active'%>
+<%=  f.radio_button :status, "off"%>
+<%=  label :article_status, 'Off'%>
+
+<br />
+
+<p>Current Photo: <%= image_tag @article.photo.url(:thumb) %></p>
+<%= f.label :photo%>
+<%= f.file_field :photo%>
+
+<br />
+
+<%=  f.submit :submit%>
+<% end  %>
+
+<div>
+	<%= link_to 'back to index', article_path %>
+</div>

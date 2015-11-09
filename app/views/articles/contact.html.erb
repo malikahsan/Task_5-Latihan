@@ -1,0 +1,40 @@
+<h1><%= @contact_name%> Contact</h1>
+
+<!-- Content  -->
+<div class="container clearfix">
+      <div class="row row-offcanvas row-offcanvas-left ">
+        <!--Bagian Kiri-->
+        <div class="col-xs-12 col-sm-3 side pull-left sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+          	<h1> <%= @contact_name%></h1>
+          	<%= image_tag("profile2.JPG", alt: "Image Pgofile", width: "140px", height: "140px", class: "img-circle") %>
+          	
+          </div>
+        </div>
+
+        <!--Bagian Kanan-->
+        <div id="main-content" class="col-xs-12 col-sm-9 main pull-right">
+         <div class="panel-body">
+         	<%= form_tag("#", class: "form-horizontal") do %>
+         		<div class="form-group">
+         			<%= label_tag "inputEmail", "Email", class: "col-sm-2 control-label"%>
+         			<div class="col-sm-10">
+         				<%= text_field "person", "email", "id" => "inputEmail", "class" => "form-control", "placeholder" => "Email" %>
+         			</div>
+         		</div>
+         		<div class="form-group">
+         			<%= label_tag "inputMessage", "Messages", class: "col-sm-2 control-label" %>
+         			<div class="col-sm-10">
+         				<%= text_area "post", "messages", "rows" => 20, class: "form-control", placeholder: "Leave a messages" %>
+         			</div>
+         		</div>
+         		<div class="form-group">
+         			<div class="col-sm-10">
+         				<%= button_tag "Send a Messages", class: "btn btn-default" %>
+         			</div>
+         		</div>
+         	<% end %>
+         </div>
+        </div>
+      </div>
+    </div>
